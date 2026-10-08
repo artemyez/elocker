@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateTeamLockers < ActiveRecord::Migration[8.1]
   def change
     create_table :team_lockers do |t|
@@ -5,6 +7,6 @@ class CreateTeamLockers < ActiveRecord::Migration[8.1]
       t.references :locker, null: false
       t.timestamps
     end
-    add_index :team_lockers, [ :team_id, :locker_id ], unique: true
+    add_index :team_lockers, %i[team_id locker_id], unique: true
   end
 end

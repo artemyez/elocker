@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   allow_browser versions: :modern
@@ -26,7 +28,7 @@ class ApplicationController < ActionController::Base
   def require_current_user
     return if current_user
 
-    render plain: "No users are available. Create the demo users to continue.", status: :service_unavailable
+    render plain: 'No users are available. Create the demo users to continue.', status: :service_unavailable
   end
 
   def accessible_lockers

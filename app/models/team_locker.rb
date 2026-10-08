@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TeamLocker < ApplicationRecord
   belongs_to :team
   belongs_to :locker
@@ -10,8 +12,8 @@ class TeamLocker < ApplicationRecord
   def same_company
     return unless team && locker
 
-    if team.company_id != locker.company_id
-      errors.add(:locker, "must belong to the same company as the team")
-    end
+    return unless team.company_id != locker.company_id
+
+    errors.add(:locker, 'must belong to the same company as the team')
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateLockerActions < ActiveRecord::Migration[8.1]
   def change
     create_table :locker_actions do |t|

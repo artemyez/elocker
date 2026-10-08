@@ -9,4 +9,24 @@ class Locker < ApplicationRecord
   validates :name, presence: true, uniqueness: { scope: :company_id }
   validates :identifier, presence: true, uniqueness: { scope: :company_id }
   validates :location, presence: true
+
+  def open(user)
+    perform_transition(target_state: "open", action_name: "open", user: user)
+  end
+
+  def close(user)
+    perform_transition(target_state: "closed", action_name: "close", user: user)
+  end
+
+  private
+
+  def perform_transition(target_state:, action_name:, user:)
+    with_lock do
+      return false if state == target_state
+
+      update!(state: target_state)
+      locker_actions.create!(user: user, action: action_name, occurred_at: Time.current)
+      true
+    end
+  end
 end

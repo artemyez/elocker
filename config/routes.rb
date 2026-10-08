@@ -9,6 +9,15 @@ Rails.application.routes.draw do
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  root "lockers#index"
+
+  resources :lockers, only: [ :index, :show ] do
+    member do
+      post :open
+      post :close
+    end
+  end
+
+  resources :locker_actions, only: :index, path: "actions"
+  patch "current_user", to: "current_users#update", as: :current_user
 end

@@ -8,9 +8,8 @@ class Locker < ApplicationRecord
 
   enum :state, { open: 'open', closed: 'closed' }, validate: true
 
-  validates :name, presence: true, uniqueness: { scope: :company_id }
-  validates :identifier, presence: true, uniqueness: { scope: :company_id }
-  validates :location, presence: true
+  validates :name, :identifier, :location, presence: true
+  validates :name, :identifier, uniqueness: { scope: :company_id }
 
   def open(user)
     perform_transition(target_state: 'open', action_name: 'open', user: user)

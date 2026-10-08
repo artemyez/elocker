@@ -13,20 +13,23 @@ class LockersController < ApplicationController
   end
 
   def open
-    process_action(@locker.open(current_user))
+    respond_to_operation { @locker.open(current_user) }
   end
 
   def close
-    process_action(@locker.close(current_user))
+    respond_to_operation { @locker.close(current_user) }
   end
 
   private
 
   def set_locker
     @locker = accessible_lockers.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to lockers_path, alert: "Locker not found or unavailable.", status: :see_other
   end
 
-  def process_action(changed)
+  def respond_to_operation
+    changed = yield
     notice = changed ? "Locker is now #{@locker.state}." : "Locker is already #{@locker.state}."
     redirect_to locker_path(@locker), notice: notice, status: :see_other
   rescue ActiveRecord::RecordInvalid

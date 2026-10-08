@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   end
 
   def available_users
-    @available_users ||= User.order(:name, :id)
+    @available_users ||= User.includes(team: :company).order(:name, :id)
   end
 
   def require_current_user

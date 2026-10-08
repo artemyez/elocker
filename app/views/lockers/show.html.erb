@@ -1,0 +1,26 @@
+<% content_for :title, "#{@locker.name} · eLocker" %>
+<%= link_to "← Back to lockers", lockers_path, class: "text-sm font-medium text-indigo-700 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+<section aria-labelledby="locker-title" class="mt-5 rounded-lg border border-slate-200 bg-white p-5 sm:p-6">
+  <div class="flex flex-wrap items-center justify-between gap-4">
+    <div>
+      <h1 id="locker-title" class="break-words text-2xl font-bold tracking-tight"><%= @locker.name %></h1>
+      <p class="mt-1 text-sm text-slate-500"><%= @locker.identifier %></p>
+    </div>
+    <%= locker_state_badge(@locker) %>
+  </div>
+  <dl class="my-6 grid gap-5 border-y border-slate-100 py-5 sm:grid-cols-2">
+    <div>
+      <dt class="text-xs font-semibold uppercase tracking-wide text-slate-500">Company</dt>
+      <dd class="mt-1 break-words text-sm"><%= @locker.company.name %></dd>
+    </div>
+    <div>
+      <dt class="text-xs font-semibold uppercase tracking-wide text-slate-500">Location</dt>
+      <dd class="mt-1 break-words text-sm"><%= @locker.location %></dd>
+    </div>
+  </dl>
+  <%= render "shared/locker_controls", locker: @locker %>
+</section>
+<section aria-labelledby="history-title" class="mt-8">
+  <h2 id="history-title" class="mb-4 text-lg font-semibold">Action history</h2>
+  <%= render "shared/history", actions: @locker_actions, show_locker: false %>
+</section>

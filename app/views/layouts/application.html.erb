@@ -4,6 +4,7 @@
     <title><%= content_for(:title) || "eLocker" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="application-name" content="eLocker">
+    <%= javascript_include_tag "turbo", type: "module", "data-turbo-track": "reload" %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= yield :head %>

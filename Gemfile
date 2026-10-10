@@ -61,6 +61,7 @@ end
 
 group :test do
   gem 'factory_bot_rails'
+  gem 'rails-controller-testing'
   gem 'shoulda-matchers'
 
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]

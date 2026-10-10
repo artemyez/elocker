@@ -46,3 +46,4 @@ Metrics/BlockLength:
   AllowedMethods:
     - describe
     - context
+    - shared_context

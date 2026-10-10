@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 # Rebuilds all demo data, including action history, on every run.
+return if Rails.env.test?
+
 ActiveRecord::Base.transaction do # rubocop:disable Metrics/BlockLength
   [LockerAction, TeamLocker, User, Locker, Team, Company].each(&:delete_all)
 

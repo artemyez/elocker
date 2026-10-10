@@ -40,3 +40,9 @@ Layout/TrailingEmptyLines:
 Metrics:
   Exclude:
     - db/migrate/**/*
+
+# RSpec example groups declare a collection of independent examples.
+Metrics/BlockLength:
+  AllowedMethods:
+    - describe
+    - context

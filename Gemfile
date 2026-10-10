@@ -39,6 +39,8 @@ gem 'thruster', require: false
 gem 'image_processing', '~> 1.2'
 
 group :development, :test do
+  gem 'pry-rails'
+  gem 'rspec-rails', '~> 8.0'
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri windows], require: 'debug/prelude'
 
@@ -58,6 +60,9 @@ group :development do
 end
 
 group :test do
+  gem 'factory_bot_rails'
+  gem 'shoulda-matchers'
+
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
   gem 'selenium-webdriver'

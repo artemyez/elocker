@@ -2,8 +2,7 @@
 
 class CurrentUsersController < ApplicationController
   def update
-    user_id = params[:user_id]
-    user = User.find_by(id: user_id) if user_id.is_a?(String) && user_id.match?(/\A[0-9]+\z/)
+    user = User.find_by(id: params[:user_id])
 
     if user
       session[:current_user_id] = user.id
